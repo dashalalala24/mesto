@@ -6,9 +6,10 @@
   line-height: 22px;
   text-align: center;
   color: #fff;
-  margin: 47px 0 0;
-  padding: 13px 0;
+  margin: 49px 0 0;
+  padding: 13px 0 14px;
   cursor: pointer;
+  border: none;
   transition: opacity .3s;
 }
 
@@ -20,6 +21,6 @@
   .popup__button {
     font-size: 14px;
     margin: 45px 0 0;
-    padding: 10px 0;
+    padding: 10px 0 14px;
   }
 }

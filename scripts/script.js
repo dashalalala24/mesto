@@ -1,31 +1,35 @@
-let newUserName = document.querySelector('.popup__name');
+let newUserName = document.querySelector('.popup__input_type_name');
 let userName = document.querySelector('.profile__name');
-newUserName.placeholder = `${userName.textContent}`;
-
-let newUserOccupation = document.querySelector('.popup__occupation');
+let newUserOccupation = document.querySelector('.popup__input_type_occupation');
 let userOccupation = document.querySelector('.profile__occupation');
-newUserOccupation.placeholder = `${userOccupation.textContent}`;
-
-
 let openProfileEdit = document.querySelector('.profile__edit-button');
 let popup = document.querySelector('.popup');
-
-openProfileEdit.addEventListener('click', function () {
-  popup.classList.add('popup__opened')
-});
-
 let closeProfileEdit = document.querySelector('.popup__close-icon');
+let editInfoForm = document.querySelector('form')
+//let submitButton = document.querySelector('.popup__button');
 
-function popupClose() {
-  popup.classList.remove('popup__opened')
+newUserName.value = `${userName.textContent}`;
+newUserOccupation.value = `${userOccupation.textContent}`;
+
+
+function openEdit() {
+  popup.classList.add('popup_opened')
 };
 
-closeProfileEdit.addEventListener('click', popupClose);
+openProfileEdit.addEventListener('click', openEdit);
 
-let submitButton = document.querySelector('.popup__button');
 
-submitButton.addEventListener('click', function () {
+function closeEdit() {
+  popup.classList.remove('popup_opened')
+};
+
+closeProfileEdit.addEventListener('click', closeEdit);
+
+function formSubmit(evt) {
+  evt.preventDefault();
   userName.textContent = `${newUserName.value}`;
   userOccupation.textContent = `${newUserOccupation.value}`;
-  popupClose();
-})
+  closeEdit();
+}
+
+editInfoForm.addEventListener('submit', formSubmit)
