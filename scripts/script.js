@@ -1,3 +1,12 @@
+let newUserName = document.querySelector('.popup__name');
+let userName = document.querySelector('.profile__name');
+newUserName.placeholder = `${userName.textContent}`;
+
+let newUserOccupation = document.querySelector('.popup__occupation');
+let userOccupation = document.querySelector('.profile__occupation');
+newUserOccupation.placeholder = `${userOccupation.textContent}`;
+
+
 let openProfileEdit = document.querySelector('.profile__edit-button');
 let popup = document.querySelector('.popup');
 
@@ -15,15 +24,8 @@ closeProfileEdit.addEventListener('click', popupClose);
 
 let submitButton = document.querySelector('.popup__button');
 
-
-
 submitButton.addEventListener('click', function () {
-  let newUserName = document.querySelector('.popup__name');
-  let newUserOccupation = document.querySelector('.popup__occupation');
-  let userName = document.querySelector('.profile__name');
-  let userOccupation = document.querySelector('.profile__occupation');
   userName.textContent = `${newUserName.value}`;
   userOccupation.textContent = `${newUserOccupation.value}`;
   popupClose();
 })
-

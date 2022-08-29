@@ -2,6 +2,10 @@
   margin: 39px 0 0;
 }
 
+.popup__name::placeholder {
+  color: #000;
+}
+
 @media screen and (max-width: 767px) {
   .popup__name {
     margin-top: 65px;
