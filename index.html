@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Сервис для обмена фотографиями из путешествий по России">
+  <meta name="keywords" content="Фото, Россия, соцсеть">
+  <meta name="author" content="Лазарчук Дарья">
+  <link rel="stylesheet" href="./pages/index.css">
+  <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
+  <title>Mesto</title>
+</head>
+
+<body>
+  <div class="page">
+    <div class="popup">
+      <div class="popup__container">
+        <div class="popup__close-icon"></div>
+        <h3 class="popup__title">Редактировать профиль</h3>
+        <input class="popup__input popup__name" type="text" placeholder="Имя">
+        <input class="popup__input popup__occupation" type="text" placeholder="О себе">
+        <button class="popup__button" type="submit">Сохранить</button>
+      </div>
+    </div>
+    <header class="header">
+      <img class="logo" src="./images/logo.svg" alt="Логотип сервиса Mesto">
+    </header>
+    <main class="content">
+      <section class="profile">
+        <div class="profile__info">
+          <img class="profile__pic" src="./images/profile-pic.jpg" alt="Аватар">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <p class="profile__occupation">Исследователь океана</p>
+          <button class="profile__edit-button"></button>
+        </div>
+        <button class="profile__add-button"></button>
+      </section>
+      <section class="cards">
+        <article class="cards__item">
+          <img class="cards__image" src="./images/cards-karachayevsk.jpg" alt="Старинная церковь в горах">
+          <div class="cards__element">
+            <h2 class="cards__name">Карачаевск</h2>
+            <button class="cards__like"></button>
+          </div>
+        </article>
+        <article class="cards__item">
+          <img class="cards__image" src="./images/cards-elbrus.jpg" alt="Эльбрус на закате">
+          <div class="cards__element">
+            <h2 class="cards__name">Гора Эльбрус</h2>
+            <button class="cards__like"></button>
+          </div>
+        </article>
+        <article class="cards__item">
+          <img class="cards__image" src="./images/cards_dombay.jpg" alt="Осенний лес на фоне заснеженной горы">
+          <div class="cards__element">
+            <h2 class="cards__name">Домбай</h2>
+            <button class="cards__like"></button>
+          </div>
+        </article>
+        <article class="cards__item">
+          <img class="cards__image" src="./images/cards-elbrus.jpg" alt="Эльбрус на закате">
+          <div class="cards__element">
+            <h2 class="cards__name">Гора Эльбрус</h2>
+            <button class="cards__like"></button>
+          </div>
+        </article>
+        <article class="cards__item">
+          <img class="cards__image" src="./images/cards_dombay.jpg" alt="Осенний лес на фоне заснеженной горы">
+          <div class="cards__element">
+            <h2 class="cards__name">Домбай</h2>
+            <button class="cards__like"></button>
+          </div>
+        </article>
+        <article class="cards__item">
+          <img class="cards__image" src="./images/cards-karachayevsk.jpg" alt="Старинная церковь в горах">
+          <div class="cards__element">
+            <h2 class="cards__name">Карачаево-Черкессия</h2>
+            <button class="cards__like"></button>
+          </div>
+        </article>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
+    </footer>
+  </div>
+  <script src="./scripts/script.js"></script>
+</body>
+
+</html>
