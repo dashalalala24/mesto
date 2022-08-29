@@ -21,13 +21,23 @@
     padding: 8px;
   }
 }
+
 @media screen and (max-width: 768px) {
   .profile__edit-button {
     margin: 0 0 12px 9px;
   }
 }
 
-@media screen and (max-width: 415px) {
+@media screen and (max-width: 390px) {
+  .profile__edit-button {
+    margin: 0;
+    position: relative;
+    left: 30px;
+    top: -50px;
+  }
+}
+
+@media screen and (max-width: 320px) {
   .profile__edit-button {
     margin: 0;
     position: absolute;
