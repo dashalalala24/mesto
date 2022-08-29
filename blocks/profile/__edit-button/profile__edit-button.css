@@ -28,20 +28,11 @@
   }
 }
 
-@media screen and (max-width: 390px) {
+@media screen and (max-width: 415px) {
   .profile__edit-button {
     margin: 0;
     position: relative;
-    left: 30px;
-    top: -50px;
-  }
-}
-
-@media screen and (max-width: 320px) {
-  .profile__edit-button {
-    margin: 0;
-    position: absolute;
-    left: 264px;
-    top: 280px;
+    left: 28px;
+    top: -49px;
   }
 }
