@@ -21,5 +21,6 @@
   .profile__occupation {
     text-align: center;
     padding-top: 7px;
+    max-width: 282px;
   }
 }
