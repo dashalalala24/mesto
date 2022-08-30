@@ -5,15 +5,13 @@ let userOccupation = document.querySelector('.profile__occupation');
 let openProfileEdit = document.querySelector('.profile__edit-button');
 let popup = document.querySelector('.popup');
 let closeProfileEdit = document.querySelector('.popup__close-icon');
-let editInfoForm = document.querySelector('form')
-//let submitButton = document.querySelector('.popup__button');
-
-newUserName.value = `${userName.textContent}`;
-newUserOccupation.value = `${userOccupation.textContent}`;
+let editInfoForm = document.querySelector('form');
 
 
 function openEdit() {
-  popup.classList.add('popup_opened')
+  popup.classList.add('popup_opened');
+  newUserName.value = `${userName.textContent}`;
+  newUserOccupation.value = `${userOccupation.textContent}`
 };
 
 openProfileEdit.addEventListener('click', openEdit);
@@ -24,6 +22,7 @@ function closeEdit() {
 };
 
 closeProfileEdit.addEventListener('click', closeEdit);
+
 
 function formSubmit(evt) {
   evt.preventDefault();
