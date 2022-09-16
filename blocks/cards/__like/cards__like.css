@@ -4,14 +4,10 @@
   cursor: pointer;
   max-width: 25px;
   width: 100%;
-  transition: 0.3s;
+  transition: opacity .3s;
   margin: 0 20px 0 0;
 }
 
 .cards__like:hover {
   opacity: .5;
-}
-
-.cards__like:active {
-  background-image: url(../../../images/like_active.svg);
 }
