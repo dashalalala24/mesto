@@ -9,11 +9,13 @@
   <meta name="author" content="Лазарчук Дарья">
   <link rel="stylesheet" href="./pages/index.css">
   <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
+  <script src="./scripts/data.js" defer></script>
+  <script src="./scripts/script.js" defer></script>
   <title>Mesto</title>
 </head>
 
-<body>
-  <div class="page">
+<body class="page">
+    <!-- При перемещении в конец, попапы перестают открываться( Почему так происходит, я разобраться не смогла, наставник тоже не помог -->
     <div class="popup popup_type_edit-profile">
       <div class="popup__container">
         <button class="popup__close-icon" type="button" aria-label="Закрыть"></button>
@@ -65,7 +67,6 @@
     <footer class="footer">
       <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
-  </div>
   <template id="card__template">
     <article class="cards__item">
       <img class="cards__image">
@@ -76,7 +77,6 @@
       </div>
     </article>
   </template>
-  <script src="./scripts/script.js"></script>
 </body>
 
 </html>
