@@ -11,18 +11,20 @@
   <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
   <script src="./scripts/data.js" defer></script>
   <script src="./scripts/script.js" defer></script>
+  <script src="./scripts/validate.js" defer></script>
   <title>Mesto</title>
 </head>
 
 <body class="page">
-    <!-- При перемещении в конец, попапы перестают открываться( Почему так происходит, я разобраться не смогла, наставник тоже не помог -->
     <div class="popup popup_type_edit-profile">
       <div class="popup__container">
         <button class="popup__close-icon" type="button" aria-label="Закрыть"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
-        <form class="popup__form" method="get" name="edit-info">
-          <input class="popup__input popup__input_type_name" type="text" name="name" placeholder="Имя">
-          <input class="popup__input popup__input_type_occupation" type="text" name="occupation" placeholder="О себе">
+        <form class="popup__form" method="get" name="user" novalidate>
+          <input class="popup__input popup__input_type_username" id="username-input" type="text" name="username" placeholder="Имя" minlength="2" maxlength="40" required>
+          <span id="username-input-error" class="popup__error username-input-error"></span>
+          <input class="popup__input popup__input_type_occupation" id="occupation-input" type="text" name="occupation" placeholder="О себе" minlength="2" maxlength="200" required>
+          <span id="occupation-input-error" class="popup__error occupation-input-error"></span>
           <button class="popup__button" type="submit">Сохранить</button>
         </form>
       </div>
@@ -31,10 +33,11 @@
       <div class="popup__container">
         <button class="popup__close-icon" type="button" aria-label="Закрыть"></button>
         <h3 class="popup__title">Новое место</h3>
-        <form class="popup__form" method="get" name="edit-info">
-          <input class="popup__input popup__input_type_card-name" type="text" name="card-name" placeholder="Название">
-          <input class="popup__input popup__input_type_card-link" type="text" name="link"
-            placeholder="Ссылка на картинку">
+        <form class="popup__form" method="get" name="card" novalidate>
+          <input class="popup__input popup__input_type_card-name" id="cardname-input" type="text" name="cardname" placeholder="Название" minlength="2" maxlength="30" required>
+          <span id="cardname-input-error" class="popup__error cardname-input-error"></span>
+          <input class="popup__input popup__input_type_card-link" id="link-input" type="url" name="link" placeholder="Ссылка на картинку" required>
+          <span id="link-input-error" class="popup__error link-input-error"></span>
           <button class="popup__button" type="submit">Создать</button>
         </form>
       </div>
