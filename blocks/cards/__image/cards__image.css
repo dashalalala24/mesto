@@ -5,4 +5,5 @@
   border-radius: 10px 10px 0 0;
   max-height: 282px;
   object-fit: cover;
+  cursor: pointer;
 }

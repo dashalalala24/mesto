@@ -1,6 +1,5 @@
 const userName = document.querySelector('.profile__name');
 const userOccupation = document.querySelector('.profile__occupation');
-const popup = document.querySelector('.popup');
 const cardsSection = document.querySelector('.cards');
 
 const buttonOpenProfileEditForm = document.querySelector('.profile__edit-button');
@@ -15,15 +14,13 @@ const popupNewCard = document.querySelector('.popup_type_new-card');
 const formAddNewCard = document.forms.card;
 const newCardName = formAddNewCard.elements.cardname;
 const newCardLink = formAddNewCard.elements.link;
-
+const cardTemplate = document.querySelector('#card__template').content;
 const buttonCloseNewCard = popupNewCard.querySelector('.popup__close-icon');
 
 const popupFullImage = document.querySelector('.popup_type_full-image');
 const fullImage = popupFullImage.querySelector('.popup__image');
 const fullImageCaption = popupFullImage.querySelector('.popup__caption');
 const buttonCloseFullImage = popupFullImage.querySelector('.popup__close-icon');
-
-const openedPopup = document.querySelector('.popup_opened');
 
 
 // открытие попапов
@@ -44,7 +41,6 @@ function closePopup(popup) {
 // создание карточек
 
 function createCard(link, name) {
-  const cardTemplate = document.querySelector('#card__template').content;
   const cardItem = cardTemplate.querySelector(".cards__item").cloneNode(true);
   const cardImage = cardItem.querySelector('.cards__image');
   const cardName = cardItem.querySelector('.cards__name');
@@ -77,7 +73,7 @@ function renderProfileEditForm() {
   newUserOccupation.value = userOccupation.textContent;
 }
 
-function renderAddCardForm() {
+function resetAddCardForm() {
   newCardName.form.reset();
   newCardLink.form.reset();
 }
@@ -109,6 +105,7 @@ function submitNewCardForm(evt) {
 
 function closePopupByEscape(evt) {
   if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
   }
 };
@@ -131,7 +128,7 @@ buttonOpenProfileEditForm.addEventListener('click', () => {
 });
 
 buttonAddCardForm.addEventListener('click', () => {
-  renderAddCardForm();
+  resetAddCardForm();
   openPopup(popupNewCard);
 });
 
