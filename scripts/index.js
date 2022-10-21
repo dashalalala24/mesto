@@ -1,5 +1,5 @@
 
-import { userName, userOccupation, cardsSection, buttonOpenProfileEditForm, popupEditProfile, formEditProfile, newUserName, newUserOccupation, buttonCloseEditProfile, buttonAddCardForm, popupNewCard, formAddNewCard, newCardName, newCardLink, buttonCloseNewCard, popupFullImage, fullImage, fullImageCaption, buttonCloseFullImage, newCardData, initialCards, settings} from './constants.js'
+import { userName, userOccupation, cardsSection, buttonOpenProfileEditForm, popupEditProfile, formEditProfile, newUserName, newUserOccupation, buttonCloseEditProfile, buttonAddCardForm, popupNewCard, formAddNewCard, newCardName, newCardLink, buttonCloseNewCard, popupFullImage, fullImage, fullImageCaption, buttonCloseFullImage, newCardData, initialCards, settings} from './constants.js';
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 
@@ -24,15 +24,6 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupByEscape);
   window.removeEventListener('click', closePopupByClickOnOverlay);
-}
-
-
-// создание карточек
-
-function createCard(newCardData) {
-  const card = new Card(newCardData, '#card__template', handleCardClick,);
-  const cardItem = card.generateCard();
-  return cardItem;
 }
 
 
@@ -63,8 +54,7 @@ function submitNewCardForm(evt) {
   evt.preventDefault();
   newCardData.name = newCardName.value;
   newCardData.link = newCardLink.value;
-  const newCard = createCard(newCardData);
-  cardsSection.prepend(newCard);
+  createNewCard(newCardData);
   closePopup(popupNewCard);
   newCardFormValidator.disableButton();
   formAddNewCard.reset();
@@ -123,13 +113,21 @@ formEditProfile.addEventListener('submit', submitEditProfileForm);
 formAddNewCard.addEventListener('submit', submitNewCardForm);
 
 
-// карточки из шаблона
+// создание карточек
 
-initialCards.forEach((element) => {
-  const card = new Card(element, '#card__template', handleCardClick);
+function createCard(data) {
+  const card = new Card(data, '#card__template', handleCardClick);
   const cardItem = card.generateCard();
-  cardsSection.append(cardItem);
+  return cardItem;
+}
+
+initialCards.forEach((data) => {
+  cardsSection.append(createCard(data));
 });
+
+function createNewCard(data) {
+  cardsSection.prepend(createCard(data));
+}
 
 
 // экземпляры класса для проверяемых форм
