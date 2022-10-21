@@ -1,5 +1,5 @@
 
-class Card {
+export default class Card {
   constructor(data, templateSelector, handleCardClick) {
     this._cardName = data.name;
     this._cardLink = data.link;
@@ -20,11 +20,12 @@ class Card {
   generateCard() {
     this._element = this._getTemplate();
 
-    this._element.querySelector('.cards__image').src = this._cardLink;
-    this._element.querySelector('.cards__image').alt = this._cardName;
+    this._cardImage = this._element.querySelector('.cards__image');
+    this._cardImage.src = this._cardLink;
+    this._cardImage.alt = this._cardName;
     this._element.querySelector('.cards__name').textContent = this._cardName;
 
-    this._cardImage = this._element.querySelector('.cards__image');
+
     this._buttonDeleteCard = this._element.querySelector('.cards__delete-button');
     this._likeButton = this._element.querySelector('.cards__like');
 
@@ -35,8 +36,8 @@ class Card {
 
   _setButtonDeleteCardEventListener() {
     this._buttonDeleteCard.addEventListener('click', () => {
-      const cardItemToDelete = this._buttonDeleteCard.closest('.cards__item');
-      cardItemToDelete.remove();
+      this._element.remove();
+      this._element = null;
     });
   }
 
@@ -58,5 +59,3 @@ class Card {
     this._setOpenPopupEventListeners();
   }
 }
-
-export { Card };
