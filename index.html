@@ -9,67 +9,68 @@
   <meta name="author" content="Лазарчук Дарья">
   <link rel="stylesheet" href="./pages/index.css">
   <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
-  <script src="./scripts/data.js" defer></script>
-  <script src="./scripts/script.js" defer></script>
-  <script src="./scripts/validate.js" defer></script>
   <title>Mesto</title>
 </head>
 
 <body class="page">
-    <div class="popup popup_type_edit-profile">
-      <div class="popup__container">
-        <button class="popup__close-icon" type="button" aria-label="Закрыть"></button>
-        <h3 class="popup__title">Редактировать профиль</h3>
-        <form class="popup__form" method="get" name="user" novalidate>
-          <input class="popup__input popup__input_type_username" id="username-input" type="text" name="username" placeholder="Имя" minlength="2" maxlength="40" required>
-          <span id="username-input-error" class="popup__error username-input-error"></span>
-          <input class="popup__input popup__input_type_occupation" id="occupation-input" type="text" name="occupation" placeholder="О себе" minlength="2" maxlength="200" required>
-          <span id="occupation-input-error" class="popup__error occupation-input-error"></span>
-          <button class="popup__button" type="submit">Сохранить</button>
-        </form>
-      </div>
+  <div class="popup popup_type_edit-profile">
+    <div class="popup__container">
+      <button class="popup__close-icon" type="button" aria-label="Закрыть"></button>
+      <h3 class="popup__title">Редактировать профиль</h3>
+      <form class="popup__form" method="get" name="user" novalidate>
+        <input class="popup__input popup__input_type_username" id="username-input" type="text" name="username"
+          placeholder="Имя" minlength="2" maxlength="40" required>
+        <span id="username-input-error" class="popup__error username-input-error"></span>
+        <input class="popup__input popup__input_type_occupation" id="occupation-input" type="text" name="occupation"
+          placeholder="О себе" minlength="2" maxlength="200" required>
+        <span id="occupation-input-error" class="popup__error occupation-input-error"></span>
+        <button class="popup__button" type="submit">Сохранить</button>
+      </form>
     </div>
-    <div class="popup popup_type_new-card">
-      <div class="popup__container">
-        <button class="popup__close-icon" type="button" aria-label="Закрыть"></button>
-        <h3 class="popup__title">Новое место</h3>
-        <form class="popup__form" method="get" name="card" novalidate>
-          <input class="popup__input popup__input_type_card-name" id="cardname-input" type="text" name="cardname" placeholder="Название" minlength="2" maxlength="30" required>
-          <span id="cardname-input-error" class="popup__error cardname-input-error"></span>
-          <input class="popup__input popup__input_type_card-link" id="link-input" type="url" name="link" placeholder="Ссылка на картинку" required>
-          <span id="link-input-error" class="popup__error link-input-error"></span>
-          <button class="popup__button" type="submit">Создать</button>
-        </form>
-      </div>
+  </div>
+  <div class="popup popup_type_new-card">
+    <div class="popup__container">
+      <button class="popup__close-icon" type="button" aria-label="Закрыть"></button>
+      <h3 class="popup__title">Новое место</h3>
+      <form class="popup__form" method="get" name="card" novalidate>
+        <input class="popup__input popup__input_type_card-name" id="cardname-input" type="text" name="cardname"
+          placeholder="Название" minlength="2" maxlength="30" required>
+        <span id="cardname-input-error" class="popup__error cardname-input-error"></span>
+        <input class="popup__input popup__input_type_card-link" id="link-input" type="url" name="link"
+          placeholder="Ссылка на картинку" required>
+        <span id="link-input-error" class="popup__error link-input-error"></span>
+        <button class="popup__button" type="submit">Создать</button>
+      </form>
     </div>
-    <div class="popup popup_type_full-image">
-      <div class="popup__container popup__container_type_full-image">
-        <button class="popup__close-icon" type="button" aria-label="Закрыть"></button>
-        <figure class="popup__figure">
-          <img class="popup__image">
-          <figcaption class="popup__caption"></figcaption>
-        </figure>
-      </div>
+  </div>
+  <div class="popup popup_type_full-image">
+    <div class="popup__container popup__container_type_full-image">
+      <button class="popup__close-icon" type="button" aria-label="Закрыть"></button>
+      <figure class="popup__figure">
+        <img class="popup__image">
+        <figcaption class="popup__caption"></figcaption>
+      </figure>
     </div>
-    <header class="header">
-      <img class="logo" src="./images/logo.svg" alt="Логотип сервиса Mesto">
-    </header>
-    <main class="content">
-      <section class="profile">
-        <div class="profile__info">
-          <img class="profile__pic" src="./images/profile-pic.jpg" alt="Аватар">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <p class="profile__occupation">Исследователь океана</p>
-          <button class="profile__edit-button" type="button" aria-label="Редактировать профиль"></button>
-        </div>
-        <button class="profile__add-button" type="button" aria-label="Добавить фото"></button>
-      </section>
-      <section class="cards" aria-label="Карточки с фотографиями">
-      </section>
-    </main>
-    <footer class="footer">
-      <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
-    </footer>
+  </div>
+  <header class="header">
+    <img class="logo" src="./images/logo.svg" alt="Логотип сервиса Mesto">
+  </header>
+  <main class="content">
+    <section class="profile">
+      <div class="profile__info">
+        <img class="profile__pic" src="./images/profile-pic.jpg" alt="Аватар">
+        <h1 class="profile__name">Жак-Ив Кусто</h1>
+        <p class="profile__occupation">Исследователь океана</p>
+        <button class="profile__edit-button" type="button" aria-label="Редактировать профиль"></button>
+      </div>
+      <button class="profile__add-button" type="button" aria-label="Добавить фото"></button>
+    </section>
+    <section class="cards" aria-label="Карточки с фотографиями">
+    </section>
+  </main>
+  <footer class="footer">
+    <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
+  </footer>
   <template id="card__template">
     <article class="cards__item">
       <img class="cards__image">
@@ -80,6 +81,9 @@
       </div>
     </article>
   </template>
+  <script type="module" src="./scripts/index.js"></script>
+  <script type="module" src="./scripts/Card.js"></script>
+  <script type="module" src="./scripts/FormValidator.js"></script>
 </body>
 
 </html>
