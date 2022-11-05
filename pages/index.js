@@ -1,7 +1,7 @@
 
-import { userName, userOccupation, cardsSection, buttonOpenProfileEditForm, popupEditProfile, formEditProfile, newUserName, newUserOccupation, buttonCloseEditProfile, buttonAddCardForm, popupNewCard, formAddNewCard, newCardName, newCardLink, buttonCloseNewCard, popupFullImage, fullImage, fullImageCaption, buttonCloseFullImage, newCardData, initialCards, settings} from './constants.js';
-import Card from './Card.js';
-import FormValidator from './FormValidator.js';
+import { userName, userOccupation, cardsSection, buttonOpenProfileEditForm, popupEditProfile, formEditProfile, newUserName, newUserOccupation, buttonCloseEditProfile, buttonAddCardForm, popupNewCard, formAddNewCard, newCardName, newCardLink, buttonCloseNewCard, popupFullImage, fullImage, fullImageCaption, buttonCloseFullImage, newCardData, initialCards, settings} from '../utils/constants.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
 
 
 function handleCardClick(name, link) {
