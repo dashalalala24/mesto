@@ -3,8 +3,6 @@ import './index.css';
 import {
   buttonOpenProfileEditForm,
   formEditProfile,
-  newUserName,
-  newUserOccupation,
   buttonAddCardForm,
   formAddNewCard,
   initialCards,
@@ -67,7 +65,7 @@ const userInfo = new UserInfo({
 const popupNewCard = new PopupWithForm({
   popupSelector: '.popup_type_new-card',
   handleFormSubmit: (data) => {
-    cardList.addItem(createCard(data))
+    cardList.addItem(createCard(data));
   }
 });
 
@@ -92,9 +90,7 @@ newCardFormValidator.enableValidation();
 // открытие попапов
 
 buttonOpenProfileEditForm.addEventListener('click', () => {
-  const userData = userInfo.getUserInfo();
-  newUserName.value = userData.name;
-  newUserOccupation.value = userData.occupation;
+  popupEditProfile.setInputValues(userInfo.getUserInfo());
   profileEditFormValidator.hideErrors();
   popupEditProfile.open();
 });

@@ -1,22 +1,21 @@
-// import { userName, userOccupation } from '../utils/constants.js'
 
 export default class UserInfo {
-  constructor({ userName, userOccupation }){
+  constructor({ userName, userOccupation }) {
     this._userName = document.querySelector(userName);
     this._userOccupation = document.querySelector(userOccupation);
   }
 
   getUserInfo() {
     const userData = {
-      name: this._userName.textContent,
-      occupation: this._userOccupation.textContent
+      userName: this._userName.textContent,
+      userOccupation: this._userOccupation.textContent
     };
 
     return userData;
   }
 
   setUserInfo(data) {
-    this._userName.textContent = data.username;
-    this._userOccupation.textContent = data.occupation;
+    this._userName.textContent = data.userName;
+    this._userOccupation.textContent = data.userOccupation;
   }
 }
