@@ -7,7 +7,7 @@
   <meta name="description" content="Сервис для обмена фотографиями из путешествий по России">
   <meta name="keywords" content="Фото, Россия, соцсеть">
   <meta name="author" content="Лазарчук Дарья">
-  <link rel="stylesheet" href="./pages/index.css">
+  <!-- <link rel="stylesheet" href="./pages/index.css"> -->
   <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
   <title>Mesto</title>
 </head>
@@ -58,7 +58,7 @@
   <main class="content">
     <section class="profile">
       <div class="profile__info">
-        <img class="profile__pic" src="./images/profile-pic.jpg" alt="Аватар">
+        <img class="profile__pic" src="<%=require('./images/profile-pic.jpg')%>" alt="Аватар">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
         <p class="profile__occupation">Исследователь океана</p>
         <button class="profile__edit-button" type="button" aria-label="Редактировать профиль"></button>
@@ -81,7 +81,7 @@
       </div>
     </article>
   </template>
-  <script type="module" src="./pages/index.js"></script>
+  <!-- <script type="module" src="./pages/index.js"></script> -->
 </body>
 
 </html>
