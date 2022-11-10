@@ -19,10 +19,10 @@
       <h3 class="popup__title">Редактировать профиль</h3>
       <form class="popup__form" method="get" name="user" novalidate>
         <input class="popup__input popup__input_type_username" id="username-input" type="text" name="username"
-          placeholder="Имя" minlength="2" maxlength="40" required>
+          placeholder="Имя" minlength="2" maxlength="40" autocomplete="off" required>
         <span id="username-input-error" class="popup__error username-input-error"></span>
         <input class="popup__input popup__input_type_occupation" id="occupation-input" type="text" name="occupation"
-          placeholder="О себе" minlength="2" maxlength="200" required>
+          placeholder="О себе" minlength="2" maxlength="200" autocomplete="off" required>
         <span id="occupation-input-error" class="popup__error occupation-input-error"></span>
         <button class="popup__button" type="submit">Сохранить</button>
       </form>
@@ -34,10 +34,10 @@
       <h3 class="popup__title">Новое место</h3>
       <form class="popup__form" method="get" name="card" novalidate>
         <input class="popup__input popup__input_type_card-name" id="cardname-input" type="text" name="cardname"
-          placeholder="Название" minlength="2" maxlength="30" required>
+          placeholder="Название" minlength="2" maxlength="30" autocomplete="off" required>
         <span id="cardname-input-error" class="popup__error cardname-input-error"></span>
         <input class="popup__input popup__input_type_card-link" id="link-input" type="url" name="link"
-          placeholder="Ссылка на картинку" required>
+          placeholder="Ссылка на картинку" autocomplete="off" required>
         <span id="link-input-error" class="popup__error link-input-error"></span>
         <button class="popup__button" type="submit">Создать</button>
       </form>
