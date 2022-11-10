@@ -1,6 +1,9 @@
+// import { fullImage, fullImageCaption } from '../utils/constants.js';
+
 
 export default class Card {
-  constructor(data, templateSelector, handleCardClick) {
+  constructor({ data, templateSelector , handleCardClick }) {
+    this._data = data;
     this._cardName = data.name;
     this._cardLink = data.link;
     this._templateSelector = templateSelector;
@@ -10,19 +13,17 @@ export default class Card {
   _getTemplate() {
     const cardItem = document
       .querySelector(this._templateSelector)
-      .content
-      .querySelector('.cards__item')
+      .content.querySelector('.cards__item')
       .cloneNode(true);
-
+      
     return cardItem;
   }
 
   generateCard() {
     this._element = this._getTemplate();
-
     this._cardImage = this._element.querySelector('.cards__image');
     this._cardImage.src = this._cardLink;
-    this._cardImage.alt = this._cardName;
+    this._cardImage.alt = `Фотография: ${this._cardName}`;
     this._element.querySelector('.cards__name').textContent = this._cardName;
 
 
@@ -49,7 +50,7 @@ export default class Card {
 
   _setOpenPopupEventListeners() {
     this._cardImage.addEventListener('click', () => {
-      this._handleCardClick(this._cardName, this._cardLink);
+      this._handleCardClick(this._data);
     });
   }
 
