@@ -10,7 +10,6 @@ export default class FormValidator {
     this._formElement = formElement;
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
     this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
-    this._formList = Array.from(this._formElement.querySelectorAll(this._formSelector));
   }
 
   _showInputError(inputElement) {
@@ -67,18 +66,8 @@ export default class FormValidator {
 
         this._toggleButtonState();
       });
-      // inputElement.addEventListener('mouseout', () => {
-      //   this._errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
-      //   this._isValid(inputElement);
-
-      //   this._toggleButtonState();
-      // });
     });
-
-
   }
-
-
 
   hideErrors() {
     this._inputList.forEach((inputElement) => {
