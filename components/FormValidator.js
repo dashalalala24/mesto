@@ -67,8 +67,18 @@ export default class FormValidator {
 
         this._toggleButtonState();
       });
+      // inputElement.addEventListener('mouseout', () => {
+      //   this._errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
+      //   this._isValid(inputElement);
+
+      //   this._toggleButtonState();
+      // });
     });
+
+
   }
+
+
 
   hideErrors() {
     this._inputList.forEach((inputElement) => {

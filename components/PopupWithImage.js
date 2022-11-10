@@ -12,8 +12,8 @@ export default class PopupWithImage extends Popup {
   open(data) {
     super.open();
     
-    this._popupImage.alt = `Фотография: ${data.name}`;
+    this._popupImage.alt = `Фотография: ${data.cardname}`;
     this._popupImage.src = data.link;
-    this._popupCaption.textContent = data.name;
+    this._popupCaption.textContent = data.cardname;
   }
 }
