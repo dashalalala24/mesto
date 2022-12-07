@@ -3,8 +3,8 @@
   display: grid;
   grid-template-rows: repeat(2, auto);
   grid-template-columns: repeat(3, auto);
-  grid-template-areas: 'profile__pic profile__name profile__edit-button'
-  'profile__pic profile__occupation .';
+  grid-template-areas: 'profile__pic-container profile__name profile__edit-button'
+  'profile__pic-container profile__occupation .';
 }
 
 @media screen and (max-width: 415px) {

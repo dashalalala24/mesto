@@ -2,12 +2,13 @@
 
 
 export default class Card {
-  constructor({ data, templateSelector , handleCardClick }) {
+  constructor({ data, templateSelector , handleCardClick, handleDeletion }) {
     this._data = data;
-    this._cardName = data.cardname;
+    this._cardName = data.name;
     this._cardLink = data.link;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
+    this._handleDeletion = handleDeletion
   }
 
   _getTemplate() {
@@ -37,8 +38,9 @@ export default class Card {
 
   _setButtonDeleteCardEventListener() {
     this._buttonDeleteCard.addEventListener('click', () => {
-      this._element.remove();
-      this._element = null;
+      // this._element.remove();
+      // this._element = null;
+      this.handleDeletion();
     });
   }
 
