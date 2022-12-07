@@ -2,11 +2,16 @@ import './index.css';
 
 import {
   buttonOpenProfileEditForm,
-  formEditProfile,
   buttonAddCardForm,
+  profilePic,
+  profilePicContainer,
   formAddNewCard,
-  initialCards,
-  settings
+  formEditProfile,
+  formEditProfilePic,
+  settings,
+  apiConfig,
+  // newUserName,
+  // newUserOccupation,
 } from '../utils/constants.js';
 
 import UserInfo from '../components/UserInfo.js';
@@ -14,8 +19,21 @@ import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithConfirmation from '../components/PopupWithConfirmation';
 import FormValidator from '../components/FormValidator.js';
+import Api from '../components/Api';
 
+
+const api = new Api(apiConfig);
+
+api.getUserInfo()
+  .then((result) => {
+    userInfo.setUserInfo(result);
+    userInfo.setProfilePic(result);
+  })
+  .catch((error) => {
+    console.log(error)
+  });
 
 // создание карточек
 
@@ -33,31 +51,54 @@ function createCard(items) {
 
 
 const cardList = new Section({
-  items: initialCards,
+  // items: initialCards,
   renderer: (data) => {
     cardList.addItem(createCard(data));
   },
   containerSelector: '.cards',
 });
 
-cardList.renderItems();
+api.getInitialCards()
+  .then((result) => {
+    console.log(result)
+    cardList.renderItems(result);
+  })
+  .catch((error) => {
+    console.log(error)
+  })
+
+// cardList.renderItems();
 
 
 // экземпляр класса попапа юзера
 
 const popupEditProfile = new PopupWithForm({
   popupSelector: '.popup_type_edit-profile',
-  handleFormSubmit: (data) => {
-    userInfo.setUserInfo(data);
+  handleFormSubmit: (result) => {
+    api.setUserInfo(result)
+      .then((result) => {
+        console.log(result)
+        userInfo.setUserInfo(result);
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }
 });
 
 popupEditProfile.setEventListeners();
 
+// информация о пользователе
+
 const userInfo = new UserInfo({
   userName: '.profile__name',
-  userOccupation: '.profile__occupation'
+  userOccupation: '.profile__occupation',
+  userProfilePic: '.profile__pic',
 });
+
+
+
+
 
 
 // экземпляр класса попапа новой карточки
@@ -70,6 +111,25 @@ const popupNewCard = new PopupWithForm({
 });
 
 popupNewCard.setEventListeners();
+
+// экземпляр класса попапа смены аватара
+
+const popupEditProfilePic = new PopupWithForm({
+  popupSelector: '.popup_type_edit-profilepic',
+  handleFormSubmit: (data) => {
+    api.setProfilePic(data)
+      .then((result) => {
+        userInfo.setProfilePic(result)
+      })
+      .catch((error) => {
+        console.log(error)
+      });
+  }
+});
+
+
+
+popupEditProfilePic.setEventListeners();
 
 
 // экземпляр класса попапа с fullimage
@@ -86,6 +146,8 @@ profileEditFormValidator.enableValidation();
 const newCardFormValidator = new FormValidator(settings, formAddNewCard);
 newCardFormValidator.enableValidation();
 
+const profilePicEditFormValidator = new FormValidator(settings, formEditProfilePic);
+profilePicEditFormValidator.enableValidation();
 
 // открытие попапов
 
@@ -96,7 +158,12 @@ buttonOpenProfileEditForm.addEventListener('click', () => {
 });
 
 buttonAddCardForm.addEventListener('click', () => {
-  // resetAddCardForm();
   newCardFormValidator.hideErrors();
   popupNewCard.open();
 });
+
+
+profilePicContainer.addEventListener('click', () => {
+  profilePicEditFormValidator.hideErrors();
+  popupEditProfilePic.open();
+})
