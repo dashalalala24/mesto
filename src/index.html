@@ -49,19 +49,20 @@
       <button class="popup__close-icon" type="button" aria-label="Закрыть"></button>
       <h3 class="popup__title">Обновить аватар</h3>
       <form class="popup__form" method="get" name="profilepic" novalidate>
-        <input class="popup__input popup__input_type_profilepic-link" id="profilepic-link-input" type="url" name="avatar"
-          placeholder="Ссылка на фотографию" autocomplete="off" required>
+        <input class="popup__input popup__input_type_profilepic-link" id="profilepic-link-input" type="url"
+          name="avatar" placeholder="Ссылка на фотографию" autocomplete="off" required>
         <span id="profilepic-link-input-error" class="popup__error profilepic-link-input-error"></span>
         <button class="popup__button" type="submit">Сохранить</button>
       </form>
     </div>
   </div>
 
-  <div class="popup popup_type_confirm">
+  <div class="popup popup_type_confirm-deletion">
     <div class="popup__container">
       <button class="popup__close-icon" type="button" aria-label="Закрыть"></button>
       <h3 class="popup__title popup__title-confirm">Вы уверены?</h3>
-      <button class="popup__button" type="submit">Да</button>
+      <form class="popup__form" name="delete" novalidate>
+        <button class="popup__button" type="submit">Да</button>
       </form>
     </div>
   </div>
