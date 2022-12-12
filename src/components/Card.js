@@ -31,8 +31,8 @@ export default class Card {
   setLikesCounter(newLikes) {
     this._likes = newLikes;
 
-    const likeCounter = this._element.querySelector('.cards__like-counter');
-    likeCounter.textContent = this._likes.length;
+    this._likeCounter = this._element.querySelector('.cards__like-counter');
+    this._likeCounter.textContent = this._likes.length;
 
     this._likeButton = this._element.querySelector('.cards__like');
 
