@@ -1,5 +1,3 @@
-import { data } from "autoprefixer";
-
 export default class Api {
   constructor(data) {
     this._serverURL = data.serverURL;
@@ -41,22 +39,6 @@ export default class Api {
       .then(this._checkRes);
   }
 
-  // addNewCard() {
-
-  // }
-
-  // like() {
-
-  // }
-
-  // countLikes() {
-
-  // }
-
-  // deleteCard() {
-
-  // }
-
   setProfilePic(data) {
     return fetch(`${this._serverURL}/users/me/avatar`, {
       method: 'PATCH',
@@ -64,6 +46,42 @@ export default class Api {
       body: JSON.stringify({
         avatar: data.avatar
       })
+    })
+      .then(this._checkRes);
+  }
+
+  addNewCard(data) {
+    return fetch(`${this._serverURL}/cards`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: data.name,
+        link: data.link,
+      })
+    })
+      .then(this._checkRes);
+  }
+
+  putLike(cardId) {
+    return fetch(`${this._serverURL}/cards/${cardId}/likes`, {
+      method: 'PUT',
+      headers: this._headers,
+    })
+        .then(this._checkRes);
+  }
+
+  removeLike(cardId) {
+    return fetch(`${this._serverURL}/cards/${cardId}/likes`, {
+      method: 'DELETE',
+      headers: this._headers,
+    })
+      .then(this._checkRes);
+  }
+
+  deleteCard(cardId) {
+    return fetch(`${this._serverURL}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers,
     })
       .then(this._checkRes);
   }

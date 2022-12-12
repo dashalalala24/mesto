@@ -3,15 +3,12 @@ import './index.css';
 import {
   buttonOpenProfileEditForm,
   buttonAddCardForm,
-  profilePic,
   profilePicContainer,
   formAddNewCard,
   formEditProfile,
   formEditProfilePic,
   settings,
   apiConfig,
-  // newUserName,
-  // newUserOccupation,
 } from '../utils/constants.js';
 
 import UserInfo from '../components/UserInfo.js';
@@ -23,6 +20,7 @@ import PopupWithConfirmation from '../components/PopupWithConfirmation';
 import FormValidator from '../components/FormValidator.js';
 import Api from '../components/Api';
 
+let userId;
 
 const api = new Api(apiConfig);
 
@@ -30,28 +28,63 @@ api.getUserInfo()
   .then((result) => {
     userInfo.setUserInfo(result);
     userInfo.setProfilePic(result);
+    userId = result._id;
   })
   .catch((error) => {
-    console.log(error)
+    console.log(error);
   });
 
 // создание карточек
 
-function createCard(items) {
+function createCard(data) {
   const card = new Card({
-    data: items,
+    data: data,
+    userId: userId,
     templateSelector: '#card__template',
     handleCardClick: (items) => {
       popupFullImage.open(items);
-    }
+    },
+    handleDeletion: (id) => {
+      popupDeleteCard.open();
+      popupDeleteCard.submitDeletion(() => {
+        popupDeleteCard.renderLoadingDeletion(true);
+        api.deleteCard(id)
+          .then((res) => {
+            card.deleteCard();
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+          .finally(() => {
+            popupDeleteCard.renderLoadingDeletion(false);
+          });
+      });
+    },
+    handleLike: (id) => {
+      if (card.cardIsLiked()) {
+        api.removeLike(id)
+          .then((res) => {
+            card.setLikesCounter(res.likes);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        api.putLike(id)
+          .then((res) => {
+            card.setLikesCounter(res.likes);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    },
   });
   const cardItem = card.generateCard();
   return cardItem;
 }
 
-
 const cardList = new Section({
-  // items: initialCards,
   renderer: (data) => {
     cardList.addItem(createCard(data));
   },
@@ -60,12 +93,11 @@ const cardList = new Section({
 
 api.getInitialCards()
   .then((result) => {
-    console.log(result)
     cardList.renderItems(result);
   })
   .catch((error) => {
-    console.log(error)
-  })
+    console.log(error);
+  });
 
 // cardList.renderItems();
 
@@ -75,14 +107,17 @@ api.getInitialCards()
 const popupEditProfile = new PopupWithForm({
   popupSelector: '.popup_type_edit-profile',
   handleFormSubmit: (result) => {
+    popupEditProfile.renderLoadingSaving(true)
     api.setUserInfo(result)
       .then((result) => {
-        console.log(result)
         userInfo.setUserInfo(result);
       })
       .catch((error) => {
-        console.log(error)
+        console.log(error);
       })
+      .finally(() => {
+        popupEditProfile.renderLoadingSaving(false);
+      });
   }
 });
 
@@ -97,8 +132,26 @@ const userInfo = new UserInfo({
 });
 
 
+// экземпляр класса попапа смены аватара
 
+const popupEditProfilePic = new PopupWithForm({
+  popupSelector: '.popup_type_edit-profilepic',
+  handleFormSubmit: (data) => {
+    popupEditProfilePic.renderLoadingSaving(true);
+    api.setProfilePic(data)
+      .then((result) => {
+        userInfo.setProfilePic(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        popupEditProfilePic.renderLoadingSaving(false);
+      });
+  }
+});
 
+popupEditProfilePic.setEventListeners();
 
 
 // экземпляр класса попапа новой карточки
@@ -106,30 +159,28 @@ const userInfo = new UserInfo({
 const popupNewCard = new PopupWithForm({
   popupSelector: '.popup_type_new-card',
   handleFormSubmit: (data) => {
-    cardList.addItem(createCard(data));
+    popupNewCard.renderLoadingSaving(true);
+    api.addNewCard(data)
+      .then((result) => {
+        cardList.addItem(createCard(result));
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        popupNewCard.renderLoadingSaving(false);
+      });
   }
 });
 
 popupNewCard.setEventListeners();
 
-// экземпляр класса попапа смены аватара
 
-const popupEditProfilePic = new PopupWithForm({
-  popupSelector: '.popup_type_edit-profilepic',
-  handleFormSubmit: (data) => {
-    api.setProfilePic(data)
-      .then((result) => {
-        userInfo.setProfilePic(result)
-      })
-      .catch((error) => {
-        console.log(error)
-      });
-  }
-});
+// попап подтверждения удаления карточки
 
+const popupDeleteCard = new PopupWithConfirmation('.popup_type_confirm-deletion');
 
-
-popupEditProfilePic.setEventListeners();
+popupDeleteCard.setEventListeners();
 
 
 // экземпляр класса попапа с fullimage
@@ -149,6 +200,7 @@ newCardFormValidator.enableValidation();
 const profilePicEditFormValidator = new FormValidator(settings, formEditProfilePic);
 profilePicEditFormValidator.enableValidation();
 
+
 // открытие попапов
 
 buttonOpenProfileEditForm.addEventListener('click', () => {
@@ -162,8 +214,7 @@ buttonAddCardForm.addEventListener('click', () => {
   popupNewCard.open();
 });
 
-
 profilePicContainer.addEventListener('click', () => {
   profilePicEditFormValidator.hideErrors();
   popupEditProfilePic.open();
-})
+});
