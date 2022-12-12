@@ -30,11 +30,7 @@ export default class Card {
 
   setLikesCounter(newLikes) {
     this._likes = newLikes;
-
-    this._likeCounter = this._element.querySelector('.cards__like-counter');
     this._likeCounter.textContent = this._likes.length;
-
-    this._likeButton = this._element.querySelector('.cards__like');
 
     if (this.cardIsLiked()) {
       this._likeButton.classList.add('cards__like_active');
@@ -50,6 +46,8 @@ export default class Card {
     this._cardImage.alt = `Фотография: ${this._cardName}`;
     this._element.querySelector('.cards__name').textContent = this._cardName;
     this._buttonDeleteCard = this._element.querySelector('.cards__delete-button');
+    this._likeCounter = this._element.querySelector('.cards__like-counter');
+    this._likeButton = this._element.querySelector('.cards__like');
 
     this.setLikesCounter(this._likes);
 
