@@ -24,15 +24,18 @@ let userId;
 
 const api = new Api(apiConfig);
 
-api.getUserInfo()
-  .then((result) => {
-    userInfo.setUserInfo(result);
-    userInfo.setProfilePic(result);
-    userId = result._id;
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([user, cards]) => {
+    userInfo.setUserInfo(user);
+    userInfo.setProfilePic(user);
+    userId = user._id;
+
+    console.log(cards)
+    return cardList.renderItems(cards);
+
   })
-  .catch((error) => {
-    console.log(error);
-  });
+  .catch((error) => console.log(error));
+
 
 // создание карточек
 
@@ -51,6 +54,7 @@ function createCard(data) {
         api.deleteCard(id)
           .then((res) => {
             card.deleteCard();
+            popupDeleteCard.close();
           })
           .catch((error) => {
             console.log(error);
@@ -91,15 +95,14 @@ const cardList = new Section({
   containerSelector: '.cards',
 });
 
-api.getInitialCards()
-  .then((result) => {
-    cardList.renderItems(result);
-  })
-  .catch((error) => {
-    console.log(error);
-  });
 
-// cardList.renderItems();
+// информация о пользователе
+
+const userInfo = new UserInfo({
+  userName: '.profile__name',
+  userOccupation: '.profile__occupation',
+  userProfilePic: '.profile__pic',
+});
 
 
 // экземпляр класса попапа юзера
@@ -107,10 +110,11 @@ api.getInitialCards()
 const popupEditProfile = new PopupWithForm({
   popupSelector: '.popup_type_edit-profile',
   handleFormSubmit: (result) => {
-    popupEditProfile.renderLoadingSaving(true)
+    popupEditProfile.renderLoadingSaving(true);
     api.setUserInfo(result)
       .then((result) => {
         userInfo.setUserInfo(result);
+        popupEditProfile.close();
       })
       .catch((error) => {
         console.log(error);
@@ -123,14 +127,6 @@ const popupEditProfile = new PopupWithForm({
 
 popupEditProfile.setEventListeners();
 
-// информация о пользователе
-
-const userInfo = new UserInfo({
-  userName: '.profile__name',
-  userOccupation: '.profile__occupation',
-  userProfilePic: '.profile__pic',
-});
-
 
 // экземпляр класса попапа смены аватара
 
@@ -141,6 +137,7 @@ const popupEditProfilePic = new PopupWithForm({
     api.setProfilePic(data)
       .then((result) => {
         userInfo.setProfilePic(result);
+        popupEditProfilePic.close();
       })
       .catch((error) => {
         console.log(error);
@@ -163,6 +160,7 @@ const popupNewCard = new PopupWithForm({
     api.addNewCard(data)
       .then((result) => {
         cardList.addItem(createCard(result));
+        popupNewCard.close();
       })
       .catch((error) => {
         console.log(error);
@@ -179,7 +177,6 @@ popupNewCard.setEventListeners();
 // попап подтверждения удаления карточки
 
 const popupDeleteCard = new PopupWithConfirmation('.popup_type_confirm-deletion');
-
 popupDeleteCard.setEventListeners();
 
 

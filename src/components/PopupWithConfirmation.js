@@ -19,16 +19,14 @@ export default class PopupWithConfirmation extends Popup {
     this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
       this._handleFormSubmit();
-
-      this.close();
     });
   }
 
   renderLoadingDeletion(isLoading) {
     if (isLoading) {
-      this._submitButtonText = 'Удаление...';
+      this._submitButton.textContent = 'Удаление...';
     } else {
-      this._submitButtonText = this._submitButton.textContent;
+      this._submitButton.textContent = this._submitButtonText;
     }
   }
 }
